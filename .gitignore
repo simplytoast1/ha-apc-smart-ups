@@ -1,0 +1,23 @@
+# Local reference dumps — probes, sample payloads, HAR captures, notes
+REFERENCE/
+
+# Live session credentials + any persisted rotation state
+.cookie*
+
+# AI assistant / IDE per-project configs (personal, never commit)
+.claude/
+.gemini/
+.cursor/
+.aider*
+.continue/
+.zed/
+.copilot/
+
+# Editor / IDE settings
+.vscode/
+.idea/
+
+# Editor / OS noise
+.DS_Store
+__pycache__/
+*.pyc

@@ -1,0 +1,105 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "APC Smart-UPS (NMC)",
+        "description": "Connect to an APC Network Management Card (NMC2 / NMC3 / AP9640 / AP9641 / AP9643) over SNMP. The NMC must have **SNMPv1 access enabled** with at least one community in its Access Control list set to **Read** with NMS IP `0.0.0.0` (or your Home Assistant host's IP).",
+        "data": {
+          "host": "Host or IP",
+          "port": "Port",
+          "community": "Community string"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate",
+        "description": "Update the SNMP community for this NMC.",
+        "data": {
+          "host": "Host or IP",
+          "port": "Port",
+          "community": "Community string"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "The community string was rejected by the NMC.",
+      "cannot_connect": "Could not reach the NMC. Verify the IP, port, that SNMP is enabled on the card, and that the Access Control entry is enabled.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This UPS is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "APC Smart-UPS settings",
+        "description": "How often the integration polls the NMC. Lower values give faster outage detection at the cost of slightly more network traffic. For a healthy local network, 10 seconds is a good default.",
+        "data": {
+          "scan_interval": "Poll interval (seconds)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_charge": {"name": "Battery charge"},
+      "battery_runtime": {"name": "Battery runtime"},
+      "battery_voltage": {"name": "Battery voltage"},
+      "battery_current": {"name": "Battery current"},
+      "battery_temperature": {"name": "Battery temperature"},
+      "battery_status": {
+        "name": "Battery status",
+        "state": {
+          "unknown": "Unknown",
+          "normal": "Normal",
+          "low": "Low",
+          "fault": "Fault"
+        }
+      },
+      "input_voltage": {"name": "Input voltage"},
+      "input_voltage_max": {"name": "Input voltage (peak)"},
+      "input_voltage_min": {"name": "Input voltage (min)"},
+      "input_frequency": {"name": "Input frequency"},
+      "output_voltage": {"name": "Output voltage"},
+      "output_current": {"name": "Output current"},
+      "output_frequency": {"name": "Output frequency"},
+      "output_load": {"name": "Load"},
+      "output_status": {
+        "name": "Operating mode",
+        "state": {
+          "unknown": "Unknown",
+          "online": "Online",
+          "onbattery": "On battery",
+          "boost": "Boost",
+          "sleeping": "Sleeping",
+          "bypass_software": "Software bypass",
+          "off": "Off",
+          "rebooting": "Rebooting",
+          "bypass_switched": "Switched bypass",
+          "bypass_hardware_fault": "Hardware fault bypass",
+          "sleeping_until_power": "Sleeping until power",
+          "trim": "Trim"
+        }
+      },
+      "test_result": {
+        "name": "Self-test result",
+        "state": {
+          "ok": "OK",
+          "failed": "Failed",
+          "invalid": "Invalid",
+          "in_progress": "In progress"
+        }
+      },
+      "test_last_date": {"name": "Last self-test"},
+      "battery_last_replace": {"name": "Battery last replaced"}
+    },
+    "binary_sensor": {
+      "on_battery": {"name": "On battery"},
+      "battery_low": {"name": "Battery low"},
+      "battery_needs_replacement": {"name": "Battery needs replacement"},
+      "fault": {"name": "Fault"},
+      "online": {"name": "NMC reachable"},
+      "self_test_passed": {"name": "Self-test problem"}
+    }
+  }
+}

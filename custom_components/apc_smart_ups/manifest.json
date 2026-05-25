@@ -1,0 +1,12 @@
+{
+  "domain": "apc_smart_ups",
+  "name": "APC Smart-UPS (NMC)",
+  "codeowners": ["@simplytoast1"],
+  "config_flow": true,
+  "documentation": "https://github.com/simplytoast1/ha-apc-smart-ups",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/simplytoast1/ha-apc-smart-ups/issues",
+  "requirements": ["pysnmp==7.1.22"],
+  "version": "0.7.0"
+}

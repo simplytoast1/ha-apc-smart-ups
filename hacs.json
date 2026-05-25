@@ -1,0 +1,6 @@
+{
+  "name": "APC Smart-UPS (NMC)",
+  "homeassistant": "2024.11.0",
+  "content_in_root": false,
+  "render_readme": true
+}
