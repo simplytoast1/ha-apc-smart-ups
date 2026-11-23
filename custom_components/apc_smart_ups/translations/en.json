@@ -64,6 +64,10 @@
       "output_current": {"name": "Output current"},
       "output_frequency": {"name": "Output frequency"},
       "output_load": {"name": "Load"},
+      "output_real_power": {"name": "Real power"},
+      "output_apparent_power": {"name": "Apparent power"},
+      "output_power_factor": {"name": "Power factor"},
+      "total_energy": {"name": "Total energy"},
       "output_status": {
         "name": "Operating mode",
         "state": {

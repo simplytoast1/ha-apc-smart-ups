@@ -44,6 +44,10 @@ OID_OUTPUT_VOLTAGE = "1.3.6.1.4.1.318.1.1.1.4.2.1.0"   # upsAdvOutputVoltage - G
 OID_OUTPUT_FREQUENCY = "1.3.6.1.4.1.318.1.1.1.4.2.2.0" # upsAdvOutputFrequency - Gauge (Hz)
 OID_OUTPUT_LOAD_PCT = "1.3.6.1.4.1.318.1.1.1.4.2.3.0"  # upsAdvOutputLoad - Gauge (%)
 OID_OUTPUT_CURRENT = "1.3.6.1.4.1.318.1.1.1.4.2.4.0"   # upsAdvOutputCurrent - Gauge (A)
+OID_OUTPUT_REAL_POWER = "1.3.6.1.4.1.318.1.1.1.4.2.8.0"  # upsAdvOutputActivePower - INTEGER (W)
+OID_OUTPUT_APPARENT_POWER = "1.3.6.1.4.1.318.1.1.1.4.2.9.0" # upsAdvOutputApparentPower - INTEGER (VA)
+OID_TOTAL_ENERGY = "1.3.6.1.4.1.318.1.1.1.4.3.6.0"     # upsHighPrecOutputEnergyUsage - Gauge32 (1/100 kWh)
+
 
 # Self-test
 OID_TEST_RESULT = "1.3.6.1.4.1.318.1.1.1.7.2.3.0"      # upsAdvTestDiagnosticsResults - INTEGER {ok(1), failed(2), invalidTest(3), testInProgress(4)}
@@ -123,4 +127,7 @@ ALL_OIDS = {
     "test_result":        (OID_TEST_RESULT,          "int"),
     "test_last_date":     (OID_TEST_LAST_DATE,       "str"),
     "comm_status":        (OID_COMM_STATUS,          "int"),
+    "output_real_power":  (OID_OUTPUT_REAL_POWER,    "int"),
+    "output_apparent_power":    (OID_OUTPUT_APPARENT_POWER, "int"),
+    "total_energy":       (OID_TOTAL_ENERGY,         "centikwh"),
 }

@@ -8,5 +8,5 @@
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/simplytoast1/ha-apc-smart-ups/issues",
   "requirements": ["pysnmp==7.1.22"],
-  "version": "0.7.0"
+  "version": "0.7.1"
 }

@@ -1,0 +1,109 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "APC Smart-UPS (NMC)",
+        "description": "Verbindet sich per SNMP mit einer APC Network Management Card (NMC2 / NMC3 / AP9640 / AP9641 / AP9643). Die NMC muss **SNMPv1-Zugriff aktiviert** haben, mit mindestens einer Community in der Access Control List auf **Read** mit NMS-IP `0.0.0.0` (oder der IP deines Home Assistant Hosts).",
+        "data": {
+          "host": "Host oder IP",
+          "port": "Port",
+          "community": "Community-String"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Erneut authentifizieren",
+        "description": "Aktualisiere den SNMP-Community-String für diese NMC.",
+        "data": {
+          "host": "Host oder IP",
+          "port": "Port",
+          "community": "Community-String"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Der Community-String wurde von der NMC abgelehnt.",
+      "cannot_connect": "Die NMC ist nicht erreichbar. Prüfe IP und Port, dass SNMP auf der Karte aktiviert ist und dass der Access-Controll-Eintrag aktiviert ist.",
+      "unknown": "Ein unerwarteter Fehler ist aufgetreten."
+    },
+    "abort": {
+      "already_configured": "Dieses UPS ist bereits konfiguriert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "APC Smart-UPS-Einstellungen",
+        "description": "Wie oft die Integration die NMC abfragt. Niedrigere Werte erkennen Stromausfälle schneller, erzeugen aber etwas mehr Netzwerkverkehr. Für ein gesundes lokales Netzwerk sind 10 Sekunden ein guter Standardwert.",
+        "data": {
+          "scan_interval": "Abfrage-Intervall (Sekunden)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_charge": {"name": "Batterieladung"},
+      "battery_runtime": {"name": "Batterie-Laufzeit"},
+      "battery_voltage": {"name": "Batteriespannung"},
+      "battery_current": {"name": "Batteriestrom"},
+      "battery_temperature": {"name": "Batterietemperatur"},
+      "battery_status": {
+        "name": "Batteriestatus",
+        "state": {
+          "unknown": "Unbekannt",
+          "normal": "Normal",
+          "low": "Niedrig",
+          "fault": "Fehler"
+        }
+      },
+      "input_voltage": {"name": "Eingangsspannung"},
+      "input_voltage_max": {"name": "Eingangsspannung (Maximum)"},
+      "input_voltage_min": {"name": "Eingangsspannung (Minimum)"},
+      "input_frequency": {"name": "Eingangsfrequenz"},
+      "output_voltage": {"name": "Ausgangsspannung"},
+      "output_current": {"name": "Ausgangsstrom"},
+      "output_frequency": {"name": "Ausgangsfrequenz"},
+      "output_load": {"name": "Last"},
+      "output_real_power": {"name": "Wirkleistung"},
+      "output_apparent_power": {"name": "Scheinleistung"},
+      "output_power_factor": {"name": "Leistungsfaktor"},
+      "total_energy": {"name": "Gesamtenergie"},
+      "output_status": {
+        "name": "Betriebsmodus",
+        "state": {
+          "unknown": "Unbekannt",
+          "online": "Online",
+          "onbattery": "Auf Batterie",
+          "boost": "Boost",
+          "sleeping": "Ruhemodus",
+          "bypass_software": "Software-Bypass",
+          "off": "Aus",
+          "rebooting": "Neustart",
+          "bypass_switched": "Umschalt-Bypass",
+          "bypass_hardware_fault": "Hardware-Fehler-Bypass",
+          "sleeping_until_power": "Schlafmodus bis Stromrückkehr",
+          "trim": "Trim"
+        }
+      },
+      "test_result": {
+        "name": "Selbsttest-Ergebnis",
+        "state": {
+          "ok": "OK",
+          "failed": "Fehlgeschlagen",
+          "invalid": "Ungültig",
+          "in_progress": "Läuft"
+        }
+      },
+      "test_last_date": {"name": "Letzter Selbsttest"},
+      "battery_last_replace": {"name": "Batterie zuletzt ersetzt"}
+    },
+    "binary_sensor": {
+      "on_battery": {"name": "Auf Batterie"},
+      "battery_low": {"name": "Batterie schwach"},
+      "battery_needs_replacement": {"name": "Batterie muss ersetzt werden"},
+      "fault": {"name": "Fehler"},
+      "online": {"name": "NMC erreichbar"},
+      "self_test_passed": {"name": "Selbsttest-Problem"}
+    }
+  }
+}

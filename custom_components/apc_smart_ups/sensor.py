@@ -19,6 +19,8 @@ from homeassistant.const import (
     UnitOfFrequency,
     UnitOfTemperature,
     UnitOfTime,
+    UnitOfPower,
+    UnitOfEnergy,
 )
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityCategory
@@ -183,6 +185,44 @@ SENSORS: tuple[ApcSensorDescription, ...] = (
         translation_key="battery_last_replace",
         entity_category=EntityCategory.DIAGNOSTIC,
         value_fn=_g("battery_last_replace"),
+    ),
+    ApcSensorDescription(
+        key="output_real_power",
+        translation_key="output_real_power",
+        device_class=SensorDeviceClass.POWER,
+        native_unit_of_measurement=UnitOfPower.WATT,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=_g("output_real_power"),
+    ),
+    ApcSensorDescription(
+        key="output_apparent_power",
+        translation_key="output_apparent_power",
+        native_unit_of_measurement="VA",
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=_g("output_apparent_power"),
+    ),
+    ApcSensorDescription(
+        key="output_power_factor",
+        translation_key="output_power_factor",
+        device_class=SensorDeviceClass.POWER_FACTOR,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda d: (
+            round(
+                d.get("output_real_power") / d.get("output_apparent_power"),
+                3,
+            )
+            if d.get("output_real_power") is not None
+            and d.get("output_apparent_power") not in (None, 0)
+            else None
+        ),
+    ),
+    ApcSensorDescription(
+        key="total_energy",
+        translation_key="total_energy",
+        device_class=SensorDeviceClass.ENERGY,
+        native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR,
+        state_class=SensorStateClass.TOTAL_INCREASING,
+        value_fn=_g("total_energy"),
     ),
 )
 
