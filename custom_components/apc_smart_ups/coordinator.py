@@ -88,4 +88,11 @@ def _cast(raw: Any, kind: str) -> Any:
             return int(raw) / 100
         except (TypeError, ValueError):
             return None
+    if kind == "centikwh":
+        # Lifetime power usage is reported in 1/100 kWh (123.45 kWh -> SNMP 12345).
+        try:
+            return float(raw) / 100
+        except (TypeError, ValueError):
+            return None
+
     return raw

@@ -31,10 +31,11 @@ If you prefer NUT or apcupsd, use them. They're excellent. This is a third optio
 
 ## Entities exposed
 
-### Sensors (18)
+### Sensors (22)
 - Battery (7): charge %, runtime remaining, voltage, current, temperature, status, last-replaced date.
 - Input (4): voltage, voltage peak, voltage min, frequency.
-- Output (5): voltage, current, frequency, load %, operating mode.
+- Output (8): voltage, current, frequency, load %, real power, apparent power, power factor, operating mode.
+- Energy (1): total lifetime energy (where the NMC firmware reports it).
 - Self-test (2): result, last-test date.
 
 ### Binary sensors (6)
@@ -93,7 +94,7 @@ snmpwalk -v2c -c <your-community> <nmc-ip> 1.3.6.1.2.1.1.1.0
 
 If snmpwalk works from your laptop but HA times out, check the firewall between HA and the NMC for UDP/161. Also remember community strings are case-sensitive, and **NMS IP/Host Name** must be `0.0.0.0` (any) or your HA host's exact IP.
 
-**Some sensors show "Unavailable".** Older Smart-UPS firmware doesn't implement every PowerNet-MIB OID. `battery_current` in particular is commonly missing on smaller Smart-UPS models. This is expected behavior, not a bug. The integration treats missing OIDs gracefully.
+**Some sensors show "Unavailable".** Older Smart-UPS firmware doesn't implement every PowerNet-MIB OID. `battery_current` in particular is commonly missing on smaller Smart-UPS models, and the output-power / lifetime-energy OIDs are only implemented on newer card firmwares. This is expected behavior, not a bug. The integration treats missing OIDs gracefully.
 
 **Debug logging:**
 ```yaml

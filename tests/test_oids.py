@@ -17,7 +17,7 @@ def test_all_oids_have_correct_shape():
         assert len(entry) == 2, f"{name} should be (oid, cast)"
         oid, cast = entry
         assert oid.startswith("1.3.6.1."), f"{name} OID looks wrong: {oid}"
-        assert cast in {"str", "int", "timeticks"}, f"{name} bad cast: {cast}"
+        assert cast in {"str", "int", "timeticks", "centikwh"}, f"{name} bad cast: {cast}"
 
 
 def test_no_duplicate_oids():
